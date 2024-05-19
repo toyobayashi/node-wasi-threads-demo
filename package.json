@@ -1,0 +1,13 @@
+{
+  "name": "node-wasi-threads-demo",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build": "$WASI_SDK_PATH/bin/clang --target=wasm32-wasip1-threads -mbulk-memory -matomics -mexec-model=command -O3 -pthread -Wl,--import-memory,--shared-memory,--export-memory,--export-dynamic,--max-memory=2147483648,--export=malloc,--export=free -o ./main.wasm ./main.c",
+    "start": "node ./index.js"
+  },
+  "dependencies": {
+    "@emnapi/wasi-threads": "^1.0.1",
+    "@tybys/wasm-util": "^0.9.0"
+  }
+}

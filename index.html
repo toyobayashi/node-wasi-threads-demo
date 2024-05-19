@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>node-wasi-threads-demo</title>
+</head>
+<body>
+  <!--
+  <script src="./node_modules/@tybys/wasm-util/dist/wasm-util.js"></script>
+  <script src="./node_modules/@emnapi/wasi-threads/dist/wasi-threads.js"></script>
+  <script src="./index.js"></script>
+  -->
+
+  <script>
+    // pthread_join (Atomics.wait) cannot be called in browser main thread
+    if (typeof SharedArrayBuffer === 'undefined') {
+      document.body.innerHTML = 'SharedArrayBuffer is not supported in this browser'
+      throw new Error('SharedArrayBuffer is not supported in this browser')
+    } else {
+      document.body.innerHTML = 'Open the DevTools to see the output'
+    }
+    new Worker('./index.js')
+  </script>
+</body>
+</html>
